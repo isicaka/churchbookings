@@ -20,15 +20,9 @@
 <?php
 //database connection
 
-//include "css/style.css";
+$config = parse_ini_file('../config.ini');
 
-$serverhost = 'localhost:8889';
-$dbusername = 'root';
-$dbpassword = 'root';
-$dbname = 'bethesda';
-
-
-$conn = new mysqli($serverhost, $dbusername, $dbpassword, $dbname);
+$conn = new mysqli($config['serverhost'], $config['username'], $config['password'], $config['database']);
 
 
 //check connection
