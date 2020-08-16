@@ -1,0 +1,120 @@
+/*
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-style: solid;
+    height: 25rem; /*I've used this to bring the form in the DIV to the center. i dont think this is the correct way of
+    doing it. I think it is the DIV element that I should have brought down to the middle of the screen, together with
+    it's child (the form); and not play with its height to achieve the same
+} */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    clear: both;
+
+
+}
+
+.container input {
+    clear: both;
+}
+
+
+#div2 {
+
+    margin: auto;
+    border-style: solid;
+}
+
+#transactions {
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    border-collapse: collapse;
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+#transactions td, #transactions th {
+  border: 1px solid #ddd;
+  /*padding: 8px;*/
+}
+
+#transactions tr:nth-child(even){background-color: #f2f2f2;}
+
+#transactions tr:hover {background-color: #ddd;}
+
+#transactions th, #transactions thead {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #E4002B;
+  color: white;
+}
+
+#mcsa_logo {
+    float: right;
+    max-width: 100%;
+    height: 100px;
+    /*border: 3px solid #E4002B; */
+}
+
+/*#ymg_logo {
+    float: right;
+    max-width: 100%;
+    height: 200px;
+    border: 2px solid #E4002B;
+} */
+
+.aligncenter {
+    text-align: center;
+    height: 200px;
+    vertical-align: middle;
+    border: 2px solid; 
+
+}
+
+#mcsa_banner {
+    text-align: center;
+    height: 103px;
+    /*border: 2px solid;*/
+    /*vertical-align: middle*/
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    /*text-align: center;*/
+}
+
+.text {
+    font-family: Verdana, Arial;
+    font-size:120%;
+    color: grey;
+    text-align: center;
+}
+
+h2 {
+    font-family: Verdana, Arial;
+    font-size:120%;
+    color: black;
+    text-align: center;
+}
+/*
+@media screen and (max-width: 768px) {
+   body .aligncenter {
+       display: none;
+   }
+    
+} */
+
