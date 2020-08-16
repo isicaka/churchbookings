@@ -35,9 +35,9 @@ $conn = new mysqli($serverhost, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+//thisistotestgithub
 //get HMTL form field values
-$firstName = $_POST['firstname'];
+$firstName = $_POST['firstnamess'];
 $lastName = $_POST['lastname'];
 $email = $_POST['email'];
 $cell = $_POST['cell'];
