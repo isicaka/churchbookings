@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reserve your seat</title>
+    <title>seat reservation</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/loginform.css">
     <!--<link rel="stylesheet" type="text/css" media="screen and (max-width: 768px)" href="css/mobile.css"> -->
@@ -31,15 +31,19 @@ if ($conn->connect_error) {
 }
 
 //get HMTL form field values
-$firstName = $_POST['firstname'];
-$lastName = $_POST['lastname'];
-$email = $_POST['email'];
-$cell = $_POST['cell'];
-$streetaddress = $_POST['homeaddress'];
+$firstName = $conn -> real_escape_string($_POST['firstname']);
+$lastName = $conn -> real_escape_string($_POST['lastname']);
+$email = $conn -> real_escape_string($_POST['email']);
+$cell = $conn -> real_escape_string($_POST['cell']);
+$streetaddress = $conn -> real_escape_string($_POST['homeaddress']);
 
-$residents_details = array($_POST['person1'], $_POST['cell1'], 
-$_POST['person2'], $_POST['cell2'], $_POST['person3'], $_POST['cell3'], 
-$_POST['person4'], $_POST['cell4'], $_POST['person5'], $_POST['cell5']);
+$residents_details = array(
+    $conn -> real_escape_string($_POST['person1']), $conn -> real_escape_string($_POST['cell1']),
+    $conn -> real_escape_string($_POST['person2']), $conn -> real_escape_string($_POST['cell2']),
+    $conn -> real_escape_string($_POST['person3']), $conn -> real_escape_string($_POST['cell3']),
+    $conn -> real_escape_string($_POST['person4']), $conn -> real_escape_string($_POST['cell4']), 
+    $conn -> real_escape_string($_POST['person5']), $conn -> real_escape_string($_POST['cell5'])
+);
 
 
 //create new residents array but now only with non-empty values
