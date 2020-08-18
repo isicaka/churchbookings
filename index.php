@@ -16,7 +16,7 @@
     <img src="images/mcsa_banner.jpg" class="center" alt="MCSA_banner.jpg"/>
     <div class="text"><h1>Bethesda Methodist Mission</h1></div>
     <div class="form">
-        <form action="reservation.php" method="POST">
+        <form action="reservation" method="POST">
             <input type="text" placeholder="name" name="firstname" id="firstname" required/>
             <input type="text" placeholder="surname" name="lastname" id="lastname" required/>
             <input type="text" placeholder="home address" name="homeaddress" id="homeaddress" required/>
