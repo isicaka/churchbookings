@@ -50,46 +50,48 @@ $residents_details = array(
 $filtered_residents = array_filter($residents_details);
 $new_insert_values = '';
 
-//INSERT into database
-$sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress) 
-VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress')";
+$sqlGetMaxID = "SELECT max(ID) AS ID FROM bookings";
+$result = $conn->query($sqlGetMaxID);
+if ($result->num_rows > 0) {
+    $maxID = $result->fetch_assoc();
+    $maxID = $maxID["ID"];
+    $seatnumber = $maxID + 1; 
+} else { echo "Something went wrong with seat numbers";}
 
-if ($conn->query($sqlNewBooking) === TRUE) {
-    echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved </h2> <br>";
-} else { echo "Error: Failed to add new record.. " . $sqlNewBooking . "<br>" . $conn->error;}
+if ($seatnumber <= 50) {
+    //INSERT into database
+    $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, currentdate) 
+    VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', curdate())";
+    if ($conn->query($sqlNewBooking) === TRUE) {
+        echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. </h2> <br>";
+        echo "<h2 style=\"text-align:center\"> You have been allocated seat number: </h2> <br>";
+        echo "<h1 style=\"text-align:center\"> $seatnumber </h1>";
+    } else { echo "Error: Failed to add new record.. " . $sqlNewBooking . "<br>" . $conn->error;}
 
-//get the maximum ID
-if (count($filtered_residents) > 0) {
-    $sqlGetMaxID = "SELECT max(ID) AS ID FROM bookings";
+    if (count($filtered_residents) > 0) {
+        for ($i=0; $i < count($filtered_residents); $i++) {
+            $insert_values = ' (' . '\'' . $seatnumber . '\',' . '\''. $filtered_residents[$i] . '\'' . ',' . '\'' . $filtered_residents[$i+1] . '\'' . '),';
+            $new_insert_values .= $insert_values;
+            $i++;
+        }
+        $new_insert_values = substr($new_insert_values,0,strlen($new_insert_values)-1);
+        //echo $new_insert_values;
+        $sqlAddResidents = "INSERT INTO residents (ID, resident, cell) 
+        VALUES " . $new_insert_values;
 
-    $result = $conn->query($sqlGetMaxID);
-    if ($result->num_rows > 0) {
-        $maxID = $result->fetch_assoc();
-        $maxID = $maxID["ID"]; 
-    } else { echo "Something went wrong with seat numbers";}
-
-
-    for ($i=0; $i < count($filtered_residents); $i++) {
-        $insert_values = ' (' . '\'' . $maxID . '\',' . '\''. $filtered_residents[$i] . '\'' . ',' . '\'' . $filtered_residents[$i+1] . '\'' . '),';
-        $new_insert_values .= $insert_values;
-        
-        $i++;
+        if ($conn->query($sqlAddResidents) === TRUE) {
+            echo "<br>";
+        } else { echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;}
     }
 
-    $new_insert_values = substr($new_insert_values,0,strlen($new_insert_values)-1);
+} else { echo "<h2 style=\"text-align:center\"> We are sorry, but there are no more seats available for this Sunday</h2> <br>";}
 
-    //echo $new_insert_values;
-    $sqlAddResidents = "INSERT INTO residents (ID, resident, cell) 
-    VALUES " . $new_insert_values;
 
-    if ($conn->query($sqlAddResidents) === TRUE) {
-        echo "<br>";
-    } else { echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;}
-}
     
 $conn->close();
 
 ?>
 
+<div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book">Go Back</a></div>
 </body>
 </html>

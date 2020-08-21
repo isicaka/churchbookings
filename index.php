@@ -24,8 +24,8 @@
             <input type="text" placeholder="cell number" name="cell" id="cell" required/>
             <table>
                 <tr>
-                    <th>Resident Name</th>
-                    <th>Contact Number</th>
+                    <th style="font-family: verdana; font-weight: bold; color: #808080; font-size: 17px">Resident Name</th>
+                    <th style="font-family: verdana; font-weight: bold; color: #808080; font-size: 17px">Contact Number</th>
                 </tr>
                 <tr>
                     <td><input type="text" placeholder="Resident 1" name="person1" id="person1" /></td>
@@ -48,8 +48,12 @@
                     <td><input type="text" placeholder="cell" name="cell5" id="cell5" /></td>
                 </tr>
             </table>
-            <button type="submit">Reserve a seat</button>
+            <button type="submit" name="book_btn">Reserve a seat</button>
+            <p></p>
+            <p></p>
+            
         </form>
+        <div style="font-family: verdana; font-weight: bold; color: #808080; font-size: 20px">To cancel a seat reservation <a href="cancelbooking">click here</a></div>
     </div>
 </body>
 </html>
