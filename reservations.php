@@ -50,18 +50,18 @@ $residents_details = array(
 $filtered_residents = array_filter($residents_details);
 $new_insert_values = '';
 
-$sqlGetMaxID = "SELECT max(ID) AS ID FROM bookings";
+$sqlGetMaxID = "SELECT max(seatnum) AS seatnum FROM bookings";
 $result = $conn->query($sqlGetMaxID);
 if ($result->num_rows > 0) {
     $maxID = $result->fetch_assoc();
-    $maxID = $maxID["ID"];
+    $maxID = $maxID["seatnum"];
     $seatnumber = $maxID + 1; 
 } else { echo "Something went wrong with seat numbers";}
 
 if ($seatnumber <= 50) {
     //INSERT into database
-    $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, currentdate) 
-    VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', curdate())";
+    $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, seatnum, currentdate) 
+    VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', $seatnumber, curdate())";
     if ($conn->query($sqlNewBooking) === TRUE) {
         echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. </h2> <br>";
         echo "<h2 style=\"text-align:center\"> You have been allocated seat number: </h2> <br>";
@@ -87,7 +87,8 @@ if ($seatnumber <= 50) {
 } else { echo "<h2 style=\"text-align:center\"> We are sorry, but there are no more seats available for this Sunday</h2> <br>";}
 
 
-    
+
+
 $conn->close();
 
 ?>

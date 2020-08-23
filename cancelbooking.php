@@ -12,7 +12,7 @@
     if (isset($_POST['CancelButton'])) {
         $seatno = $conn -> real_escape_string($_POST['seatno']);
         $cell = $conn -> real_escape_string($_POST['cell']);
-        $sqlDelete = "Delete from bookings where ID = $seatno and cellnum = $cell";
+        $sqlDelete = "Delete from bookings where seatnum = $seatno and cellnum = $cell";
         if ($conn->query($sqlDelete) === TRUE) {
             if (mysqli_affected_rows($conn) == 0) {
                 $message = "Your reservation was not found";
