@@ -50,7 +50,7 @@ $residents_details = array(
 $filtered_residents = array_filter($residents_details);
 $new_insert_values = '';
 
-se$sqlGetMaxID = "SELECT max(ID) AS maxID FROM bookings"; 
+$sqlGetMaxID = "SELECT max(ID) AS maxID FROM bookings"; 
 $RecordCount = "SELECT count(*) AS totalbookings FROM bookings";
 
 $result = $conn->query($sqlGetMaxID); 
