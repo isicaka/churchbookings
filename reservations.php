@@ -50,27 +50,37 @@ $residents_details = array(
 $filtered_residents = array_filter($residents_details);
 $new_insert_values = '';
 
-$sqlGetMaxID = "SELECT max(seatnum) AS seatnum FROM bookings";
-$result = $conn->query($sqlGetMaxID);
+se$sqlGetMaxID = "SELECT max(ID) AS maxID FROM bookings"; 
+$RecordCount = "SELECT count(*) AS totalbookings FROM bookings";
+
+$result = $conn->query($sqlGetMaxID); 
 if ($result->num_rows > 0) {
     $maxID = $result->fetch_assoc();
-    $maxID = $maxID["seatnum"];
-    $seatnumber = $maxID + 1; 
-} else { echo "Something went wrong with seat numbers";}
+    $ID = $maxID["maxID"];
+    $ID = $ID + 1; //add one since we're getting the maxID before we've inserted a new record
+    } else {echo "Something went wrong. Please contact administrator.";}
 
-if ($seatnumber <= 50) {
-    //INSERT into database
-    $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, seatnum, currentdate) 
-    VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', $seatnumber, curdate())";
+
+$res = $conn->query($RecordCount); 
+if ($res->num_rows > 0) {
+    $totalbookings = $res->fetch_assoc();
+    $totalbookings = $totalbookings["totalbookings"];
+    } else {echo "Error. Please contact administrator.";}
+    
+if ($totalbookings < 10) {
+    $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, reservationid, currentdate) 
+        VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', lpad($ID,3,0), curdate())";
     if ($conn->query($sqlNewBooking) === TRUE) {
         echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. </h2> <br>";
-        echo "<h2 style=\"text-align:center\"> You have been allocated seat number: </h2> <br>";
-        echo "<h1 style=\"text-align:center\"> $seatnumber </h1>";
-    } else { echo "Error: Failed to add new record.. " . $sqlNewBooking . "<br>" . $conn->error;}
+        echo "<h2 style=\"text-align:center\"> Note that your reservation number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
+    } else {
+        echo "Failed to reserve your seat. Please contact administrator.";
+        #echo "Failed to reserve your seat. Please contact administrator..." . $sqlNewBooking . "<br>" . $conn->error;
+    }
 
     if (count($filtered_residents) > 0) {
         for ($i=0; $i < count($filtered_residents); $i++) {
-            $insert_values = ' (' . '\'' . $seatnumber . '\',' . '\''. $filtered_residents[$i] . '\'' . ',' . '\'' . $filtered_residents[$i+1] . '\'' . '),';
+            $insert_values = ' (' . '\'' . $ID . '\',' . '\''. $filtered_residents[$i] . '\'' . ',' . '\'' . $filtered_residents[$i+1] . '\'' . '),';
             $new_insert_values .= $insert_values;
             $i++;
         }
@@ -81,13 +91,13 @@ if ($seatnumber <= 50) {
 
         if ($conn->query($sqlAddResidents) === TRUE) {
             echo "<br>";
-        } else { echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;}
+        } else { 
+            #echo "Could not complete all steps. Please contact administrator.";
+            echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;
+        }
     }
 
 } else { echo "<h2 style=\"text-align:center\"> We are sorry, but there are no more seats available for this Sunday</h2> <br>";}
-
-
-
 
 $conn->close();
 

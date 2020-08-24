@@ -5,21 +5,23 @@
 
     //check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        die("Connection failed");
+        //die("Connection failed: " . $conn->connect_error);
     }
-
-    //if FORM submitted...
+    
+    //if FORM submitted...    
     if (isset($_POST['CancelButton'])) {
-        $seatno = $conn -> real_escape_string($_POST['seatno']);
-        $cell = $conn -> real_escape_string($_POST['cell']);
-        $sqlDelete = "Delete from bookings where seatnum = $seatno and cellnum = $cell";
+        $reservationid = $conn -> real_escape_string($_POST['reservationid']);
+        $sqlDelete = "Delete from bookings where reservationid = $reservationid";
         if ($conn->query($sqlDelete) === TRUE) {
             if (mysqli_affected_rows($conn) == 0) {
-                $message = "Your reservation was not found";
-            } else {$message = "Thank you, your reservation has been cancelled";}    
-        } else { //echo "Error: Failed to cancel reservation.. " . $sqlDelete . "<br>" . $conn->error;
-            $message = "Failed to cancel the reservation...: ". $sqlDelete . "<br>" . $conn->error ;}    
-    }
+                $message = "We could not find a reservation with this reference. Please try again.";
+            } else {
+                $message = "Thank you, your reservation has been cancelled";
+            }    
+        } else {$message = "Failed to cancel the reservation. Please contact administrator";}    
+    } 
+
     $conn->close();
 ?>
 
@@ -42,8 +44,7 @@
     <div class="form">
         <th>Please enter allocated seat number</th>
         <form action="#" method="POST">
-            <input type="text" placeholder="seat number" name="seatno" id="seatno" required/>
-            <input type="text" placeholder="cell number" name="cell" id="cell" required/>
+            <input type="text" placeholder="reservation number" name="reservationid" id="reservationid" required/>
             <button type="submit" name="CancelButton">Cancel A Seat Reservation</button>            
         </form>
         <?php 
