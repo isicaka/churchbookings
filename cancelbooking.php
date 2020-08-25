@@ -55,6 +55,6 @@
         ?>
     </div>
 
-
+    <div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book">Back To Home Page</a></div>
 </body>
 </html>

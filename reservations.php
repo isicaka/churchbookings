@@ -50,17 +50,16 @@ $residents_details = array(
 $filtered_residents = array_filter($residents_details);
 $new_insert_values = '';
 
-$sqlGetMaxID = "SELECT max(ID) AS maxID FROM bookings"; 
-$RecordCount = "SELECT count(*) AS totalbookings FROM bookings";
-
-$result = $conn->query($sqlGetMaxID); 
+$sqlGetNextID = "SELECT AUTO_INCREMENT as maxID
+                FROM information_schema.TABLES 
+                WHERE TABLE_SCHEMA = 'bethesda' AND TABLE_NAME = 'bookings' ";
+$result = $conn->query($sqlGetNextID); 
 if ($result->num_rows > 0) {
-    $maxID = $result->fetch_assoc();
-    $ID = $maxID["maxID"];
-    $ID = $ID + 1; //add one since we're getting the maxID before we've inserted a new record
-    } else {echo "Something went wrong. Please contact administrator.";}
+    $nextID = $result->fetch_assoc();
+    $ID = $nextID["maxID"];
+    } else {echo "Something went wrong with a database query. Please contact administrator.";}
 
-
+$RecordCount = "SELECT count(*) AS totalbookings FROM bookings";
 $res = $conn->query($RecordCount); 
 if ($res->num_rows > 0) {
     $totalbookings = $res->fetch_assoc();
@@ -92,8 +91,8 @@ if ($totalbookings < 10) {
         if ($conn->query($sqlAddResidents) === TRUE) {
             echo "<br>";
         } else { 
-            #echo "Could not complete all steps. Please contact administrator.";
-            echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;
+            echo "Could not complete all steps. Please contact administrator.";
+            #echo "Error: could not add residents... " . $sqlAddResidents . "<br>" . $conn->error;
         }
     }
 
