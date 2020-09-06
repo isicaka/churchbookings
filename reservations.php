@@ -71,7 +71,8 @@ if ($totalbookings < 10) {
         VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', lpad($ID,3,0), curdate())";
     if ($conn->query($sqlNewBooking) === TRUE) {
         echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. </h2> <br>";
-        echo "<h2 style=\"text-align:center\"> Note that your reservation number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
+        echo "<h2 style=\"text-align:center\"> Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
+
     } else {
         echo "Failed to reserve your seat. Please contact administrator.";
         #echo "Failed to reserve your seat. Please contact administrator..." . $sqlNewBooking . "<br>" . $conn->error;
@@ -101,7 +102,8 @@ if ($totalbookings < 10) {
 $conn->close();
 
 ?>
-
+<div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book/cancelbooking">Cancel booking</a></div>
+<p></p>
 <div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book">Go Back</a></div>
 </body>
 </html>

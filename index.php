@@ -6,7 +6,10 @@
     <title>reserve your seat</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/loginform.css">
-    <!--<link rel="stylesheet" type="text/css" media="screen and (max-width: 768px)" href="css/mobile.css"> -->
+    <!--<link rel="stylesheet" type="text/css" media="screen and (max-width: 768px)" href="css/mobile.css"> 
+    <style>
+        table, th, td {border: 1px solid black;}
+    </style> -->
 
 </head>
 <body>
@@ -17,6 +20,7 @@
     <div class="text"><h1>Bethesda Methodist Mission</h1></div>
     <div class="form">
         <form action="reservations" method="POST">
+
             <input type="text" placeholder="name" name="firstname" id="firstname" required/>
             <input type="text" placeholder="surname" name="lastname" id="lastname" required/>
             <input type="text" placeholder="home address" name="homeaddress" id="homeaddress" required/>
@@ -53,6 +57,36 @@
             <p></p>
             
         </form>
+        <form action="reservations" method="POST">
+        <table>
+                <tr>
+                    <th style="font-family: verdana; font-weight: bold; color: #808080; font-size: 17px">Resident Name</th>
+                    <th style="font-family: verdana; font-weight: bold; color: #808080; font-size: 17px">Contact Number</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Resident 1" name="person1" id="person1" /></td>
+                    <td><input type="text" placeholder="cell" name="cell1" id="cell1" /></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Resident 2" name="person2" id="person2" /></td>
+                    <td><input type="text" placeholder="cell" name="cell2" id="cell2" /></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Resident 3" name="person3" id="person3" /></td>
+                    <td><input type="text" placeholder="cell" name="cell3" id="cell3" /></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Resident 4" name="person4" id="person4" /></td>
+                    <td><input type="text" placeholder="cell" name="cell4" id="cell4" /></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="Resident 5" name="person5" id="person5" /></td>
+                    <td><input type="text" placeholder="cell" name="cell5" id="cell5" /></td>
+                </tr>
+            </table>
+
+        </form>
+
         <div style="font-family: verdana; font-weight: bold; color: #808080; font-size: 20px">To cancel a seat reservation <a href="cancelbooking">click here</a></div>
     </div>
 </body>
