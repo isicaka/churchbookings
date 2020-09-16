@@ -24,7 +24,8 @@
             }    
         } else {
             //$message = "Failed to cancel the reservation. Please contact administrator" . $sqlDelete . "<br>" . $conn->error;
-        }   $message = "Failed to cancel the reservation. Please contact administrator"; 
+           $message = "Failed to cancel the reservation. Please contact administrator"; 
+        }
     } 
 
     $conn->close();
