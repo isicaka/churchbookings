@@ -11,9 +11,7 @@
 
 </head>
 <body>
-    <img src="images/mcsa_logo.jpg" id="mcsa_logo" alt="MCSA_logo.jpg"/>
-    <!--<img src="images/ymg_logo.jpg" id="ymg_logo" alt="YMG_logo.jpg"/> -->
-    
+    <img src="images/mcsa_logo.jpg" id="mcsa_logo" alt="MCSA_logo.jpg"/>    
     <img src="images/mcsa_banner.jpg" class="center" alt="MCSA_banner.jpg"/>
     <div class="text"><h1>Bethesda Methodist Mission</h1></div>
 
