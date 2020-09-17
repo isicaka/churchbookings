@@ -88,8 +88,8 @@ if ($totalbookings < 20) {
     if ($conn->query($sqlNewBooking) === TRUE) {
         echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) . ".</h2> ";
         //echo "<h2 style=\"text-align:center\"> Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
-        echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> Please note that Bethesda Methodist Mission will use the information provided only for the purpose it was intended (church seat reservation); we will not share your information with any third parties.</h3>";
-        echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> We will not share your information with any third parties.</h3> <br>";
+       // echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> Please note that Bethesda Methodist Mission will use the information provided only for the purpose it was intended (church seat reservation); we will not share your information with any third parties.</h3>";
+        //echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> We will not share your information with any third parties.</h3> <br>";
 
     } else {
         echo "Failed to reserve your seat. Please contact administrator.";
@@ -123,5 +123,9 @@ $conn->close();
 <div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book/cancelbooking">Cancel booking</a></div>
 <p></p>
 <div style="font-family: verdana; font-weight: bold; text-align: center; color: #808080; font-size: 20px"><a href="/book">Go Back</a></div> 
+<p></p>
+<p></p>
+<p></p>
+<div style= "text-align: center; font-family: verdana; color: #FF0000; font-size: 12px">Please note that Bethesda Methodist Mission will not share your details with third parties; and all information will be used only for the purpose it was intended (seat reservation). </div>
 </body>
 </html>

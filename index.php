@@ -1,3 +1,24 @@
+<?php
+    //database connection
+    $config = parse_ini_file('../config.ini');
+    $conn = new mysqli($config['serverhost'], $config['username'], $config['password'], $config['database']);
+
+    //check connection
+    if ($conn->connect_error) {
+        die("Connection failed");
+    }
+
+    $RecordCount = "SELECT count(*) AS totalbookings FROM bookings";
+    $res = $conn->query($RecordCount); 
+    if ($res->num_rows > 0) {
+    $totalbookings = $res->fetch_assoc();
+    $totalbookings = $totalbookings["totalbookings"];
+    $available_Seats = 40 - $totalbookings;  
+    } else {echo "Error. Please contact administrator.";}
+  
+    $conn->close();   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +39,8 @@
     
     <img src="images/mcsa_banner.jpg" class="center" alt="MCSA_banner.jpg"/>
     <div class="text"><h1>Bethesda Methodist Mission</h1></div>
+    <?php echo "<h2 style=\"text-align:center; color: #696969;\"> Number of seats available: $available_Seats </h2>" ?>
+
     <div class="form">
         <form action="reservations" method="POST">
             <input type="text" placeholder="name" name="firstname" id="firstname" required/>
