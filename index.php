@@ -30,27 +30,28 @@
             
             <input type="text" placeholder="Have you (or anyone you've been in contact with) in the past 14 days been in close contact with a known probable case of COVID-19 infections?" name="question1" id="question1" readonly/> -->
             <div>
-            <div style="font-family: verdana; font-weight: normal; color: #808080; font-size: 12px">Have you (or anyone you've been in contact with) in the past 14 days been in close contact with a known probable case of COVID-19 infections? </div>
-            <p></p>
-            <label style="display: inline-block; margin: auto; font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
-                <input type="radio" value="Yes" name="radio_q1"/>  Yes
+            <div style="font-family: verdana; font-weight: normal; color: #808080; font-size: 12px">
+            Have you been in close contact with anyone known to have been infected with COVID-19?</div>
+            <label style="font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
+                <input type="radio" value="Yes" name="radio_q1"/>Yes
             </label> 
-            <label style="display: inline-block; margin: auto; font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
-                <input type="radio" value="No" name="radio_q1" checked/>  No
+            <label style="font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
+                <input type="radio" value="No" name="radio_q1" checked/>No
             </label>
             </div>
             <p></p>
 
             <div>
-            <div style="font-family: verdana; font-weight: normal; color: #808080; font-size: 12px">Do you (or anyone you've been in close contact with) 
-            have any of the following symptoms associated with COVID-19: cough, sore throat, shortness of breath, 
-            loss of taste or smell or a fever (temp over 37.5C)? </div>
-            <p></p>
+            <div style="font-family: verdana; font-weight: normal; color: #808080; font-size: 12px">
+            Do you (or anyone you've been in close contact with) have any of the following symptoms 
+            associated with COVID-19: cough, sore throat, shortness of breath, loss of taste or smell 
+            or a fever (temp over 37.5C)? If yes, we humbly ask that you please stay at home.</div>
+            
             <label style="font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
-                <input type="radio" value="Yes" name="radio_q2"/>  Yes
+                <input type="radio" value="Yes" name="radio_q2"/>Yes
             </label> 
             <label style="font-family: verdana; font-weight: normal; font-size: 12px; color: #808080">
-                <input type="radio" value="No" name="radio_q2" checked/>  No
+                <input type="radio" value="No" name="radio_q2" checked/>No
             </label>
             </div>
                     

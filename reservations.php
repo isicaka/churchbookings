@@ -82,17 +82,18 @@ if ($res->num_rows > 0) {
     $totalbookings = $totalbookings["totalbookings"];
     } else {echo "Error. Please contact administrator.";}
     
-if ($totalbookings < 10) {
+if ($totalbookings < 20) {
     $sqlNewBooking = "INSERT INTO bookings (firstname, lastname, emailaddress, cellnum, homeaddress, reservationid, currentdate, questionone, questiontwo) 
         VALUES ('$firstName', '$lastName', '$email', '$cell', '$streetaddress', lpad($ID,3,0), curdate(), '$radio_one', '$radio_two')";
     if ($conn->query($sqlNewBooking) === TRUE) {
-        echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. </h2> <br>";
-        echo "<h2 style=\"text-align:center\"> Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
-        echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> Please note that Bethesda Methodist Mission will use the information provided only for the purpose it was intended (church seat reservation); we will not share your information with any third parties.</h3> <br>";
-        
+        echo "<h2 style=\"text-align:center\"> Thank you, your seat has been reserved. Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) . ".</h2> ";
+        //echo "<h2 style=\"text-align:center\"> Note that your reference number is " . str_pad($ID,3,0,STR_PAD_LEFT) .  ". Please remember it. </h2> <br>";
+        echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> Please note that Bethesda Methodist Mission will use the information provided only for the purpose it was intended (church seat reservation); we will not share your information with any third parties.</h3>";
+        echo "<h3 style=\"text-align: center; font-family: verdana; color: #FF0000; font-size: 12px\"> We will not share your information with any third parties.</h3> <br>";
+
     } else {
-        #echo "Failed to reserve your seat. Please contact administrator.";
-        echo "Failed to reserve your seat. Please contact administrator..." . $sqlNewBooking . "<br>" . $conn->error;
+        echo "Failed to reserve your seat. Please contact administrator.";
+        #echo "Failed to reserve your seat. Please contact administrator..." . $sqlNewBooking . "<br>" . $conn->error;
     }
 
     /*if (count($filtered_residents) > 0) {

@@ -39,9 +39,9 @@
 
 .form div label {
   text-align: center;
-  border: 2px solid; 
+ /* border: 2px solid; */
 
-  /*display: inline-block;*/
+  display: inline-block;
   /*margin-left: 100px;
   /*padding: 5px;*/
 
